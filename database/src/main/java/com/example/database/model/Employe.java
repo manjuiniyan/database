@@ -1,15 +1,16 @@
-package model;
+package com.example.database.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import java.sql.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "employee")
@@ -19,11 +20,15 @@ import java.sql.Date;
 public class Employe {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employe_id")
     private int employeId;
 
     @Column(name = "employe_name")
     private String employeName;
+
+    @Column(name = "initial")
+    private String initial;
 
     @Column(name = "designation")
     private String designation;
@@ -41,8 +46,9 @@ public class Employe {
     private String email;
 
     @Column(name = "phone")
-    private int phone;
+    private long phone;
 
     @Column(name = "salary")
     private int salary;
+
 }
