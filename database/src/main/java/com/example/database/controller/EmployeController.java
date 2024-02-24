@@ -30,18 +30,16 @@ public class EmployeController {
     @PostMapping("/saveEmploye")
     public String saveEmploye(@RequestBody Employe employe) {
         System.out.println("Saving Employe with Name: " + employe.getEmployeName());
-        employeServices.saveEmploye(employe);
+        savedEmploye = employeServices.saveEmploye(employe); // Assigning the returned value
         return "Employee Details Saved successfully ID is = " + savedEmploye.getEmployeId();
     }
 
-    @GetMapping("/getCustomer")
-    public String getCustomer(@RequestParam int id) {
+    @GetMapping("/getEmploye")
+    public String getEmploye(@RequestParam int id) {
         System.out.println("Getting employe with ID: " + id);
-        employeServices.findById(id);
-        return "Employee Details is Get successfully ID is =" + id ;
+        return employeServices.findById(id);
     }
 
-    // create a method for updateEmploye
     @PostMapping("/updateEmploye")
     public String updateEmploye(@RequestBody Employe employe) {
         System.out.println("Updating Employe with ID = " + employe.getEmployeId());
@@ -49,7 +47,6 @@ public class EmployeController {
         return "Employee Details is Update successfully ID is = " + employe.getEmployeId();
     }
     
-    // create a delete method to delete single or multiple employees by their IDs
     @PostMapping("/deleteEmploye")
     public String deleteEmploye(@RequestBody List<Integer> ids) {
         for (Integer id : ids) {

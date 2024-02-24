@@ -1,4 +1,3 @@
-
 package com.example.database.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,26 +11,23 @@ public class EmployeServices {
     @Autowired
     EmployeRepository employeRepository;
 
-    public String saveEmploye(Employe employe) {
+    public Employe saveEmploye(Employe employe) {
         Employe savedEmploye = employeRepository.save(employe);
-        return "The saved employe id is: " + savedEmploye.getEmployeId();
+        return savedEmploye;
     }
 
     public String findById(int id) {
-        return "The saved employe id is: " + employeRepository.findById(id);
+        Employe employe = employeRepository.findById(id);
+        return (employe != null) ? employe.toString() : "Employee not found";
     }
-    //create a methed for updateEmploye
+
     public String updateEmploye(Employe employe) {
-        return "the updated employe id is: " + employeRepository.save(employe);
+        employeRepository.save(employe);
+        return "Employee details updated successfully";
     }
    
-    
-    //create a delete method with return type
     public String deleteEmploye(int id) {
         employeRepository.deleteById(id);
-        return "the deleted employe id is: " + id;
+        return "Employee with ID " + id + " deleted successfully";
     }
-    
-    
-
 }
